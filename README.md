@@ -1,0 +1,1 @@
+# openshift-logtest-helper
