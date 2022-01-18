@@ -1,6 +1,6 @@
 set -e
 
-BRANCH=${1:-release-4.6}
+BRANCH=${1:-release-5.3}
 
 echo "Deploying elasticsearch-operator"
 if [ ! -d elasticsearch-operator ]; then
