@@ -18,12 +18,15 @@ for i in $(oc get machinesets -n openshift-machine-api -o json | jq -r '.items[]
       echo "*a not $ELS_INSTANCE_TYPE"
       oc patch -n openshift-machine-api machineset "$i" --type='merge' -p "{\"spec\":{\"template\":{\"spec\":{\"providerSpec\":{\"value\":{\"instanceType\":\"$ELS_INSTANCE_TYPE\"}}}}}}"
       oc scale -n openshift-machine-api --replicas=0 machineset "$i"
+      echo "Sleeping 15s"
       sleep 15
       oc scale -n openshift-machine-api --replicas=3 machineset "$i"
+      echo "Sleeping 1m"
       sleep 1m
     fi
   elif [[ $i == *b ]]; then
     oc scale -n openshift-machine-api --replicas=0 machineset "$i"
+    echo "Sleeping 30s"
     sleep 30
     if [[ $instance_type != "$FLUENTD_INSTANCE_TYPE" ]]; then
       echo "*b not $ELS_INSTANCE_TYPE"
