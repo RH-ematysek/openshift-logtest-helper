@@ -6,11 +6,11 @@ echo "Deploying elasticsearch-operator"
 if [ ! -d elasticsearch-operator ]; then
   git clone https://github.com/openshift/elasticsearch-operator.git
 fi
-cd elasticsearch-operator || exit 1
+cd elasticsearch-operator 
 git checkout "$BRANCH"
 git pull
-make elasticsearch-catalog-deploy || exit
-make elasticsearch-operator-install || exit
+make elasticsearch-catalog-deploy
+make elasticsearch-operator-install
 cd ..
 
 echo
@@ -18,7 +18,7 @@ echo "Deploying cluster-logging-operator"
 if [ ! -d cluster-logging-operator ]; then
   git clone https://github.com/openshift/cluster-logging-operator.git
 fi
-cd cluster-logging-operator || exit 1
+cd cluster-logging-operator
 git checkout "$BRANCH"
 git pull
 
@@ -26,8 +26,8 @@ git pull
 #export IMAGE_CLUSTER_LOGGING_OPERATOR=image-registry.openshift-image-registry.svc:5000/openshift/origin-cluster-logging-operator
 #make deploy-catalog
 
-make cluster-logging-catalog-deploy || exit
-make cluster-logging-operator-install || exit
+make cluster-logging-catalog-deploy
+make cluster-logging-operator-install
 
 echo
 
